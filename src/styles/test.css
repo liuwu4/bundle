@@ -1,0 +1,11 @@
+.hello {
+    color      :blue;
+    font-family: 'Ali'
+}
+
+@font-face {
+    font-family: 'Ali';
+    src        : url('../webfont_6muj4iuzd89/webfont.ttf') format('ttf');
+    font-weight: 600;
+    font-style : normal;
+}
