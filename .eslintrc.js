@@ -35,5 +35,6 @@ module.exports = {
         "no-empty-pattern": 2,// 禁止使用空解构
         "no-empty-function": 2,// 是否禁止空函数
         "block-spacing": 2,
+        "no-undef": 0,
     }
 };
