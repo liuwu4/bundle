@@ -29,6 +29,7 @@
     "lodash": "^4.17.15",
     "style-loader": "^1.0.0",
     "ts-loader": "^6.2.1",
+    "url-loader": "^2.2.0",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-middleware": "^3.7.1",

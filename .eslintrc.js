@@ -37,5 +37,6 @@ module.exports = {
         "block-spacing": 2,
         "no-undef": 0,
         "react/jsx-uses-react": 2,
+        "no-unused-vars": 0
     }
 };

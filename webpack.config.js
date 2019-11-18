@@ -42,13 +42,16 @@ module.exports ={
       },
       {
         test: /\.(png|jpg|gif|ttf)$/,
-        use: [
-          'file-loader'
-        ]
+        use: {
+          loader: 'file-loader'
+        }
       }
     ]
   },
   resolve: {
-    extensions: ['.js', '.json', '.jsx']
+    extensions: ['.js', '.json', '.jsx'],
+    alias: {
+      '@': 'src'
+    }
   }
 };
