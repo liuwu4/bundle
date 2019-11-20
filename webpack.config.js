@@ -24,10 +24,17 @@ module.exports ={
       template: path.resolve(__dirname, 'src/index.html')
     })
   ],
+  resolve: {
+    extensions: ['.js', '.json', '.jsx', '.ts', 'tsx'],
+    alias: {
+      '@src': resolve('src'),
+      '@alials1': resolve('./src/pages/alials1')
+    }
+  },
   module: {
     rules: [
       {
-        test: /\.(j|t)s$/,
+        test: /\.(ts|js)x?$/,
         use: [
           {
             loader: 'babel-loader'
@@ -51,12 +58,5 @@ module.exports ={
         }
       }
     ]
-  },
-  resolve: {
-    extensions: ['.js', '.json', '.jsx', '.ts', 'tsx'],
-    alias: {
-      '@src': resolve('src'),
-      '@alials1': resolve('./src/pages/alials1')
-    }
   }
 };

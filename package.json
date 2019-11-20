@@ -14,10 +14,15 @@
     "eslint": "eslint src/*.js"
   },
   "devDependencies": {
+    "@babel/cli": "^7.7.0",
     "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.2.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-es2015": "^7.0.0-beta.53",
     "@babel/preset-react": "^7.7.0",
+    "@babel/preset-typescript": "^7.7.2",
     "babel-loader": "^8.0.6",
     "babelify": "^10.0.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -29,6 +34,7 @@
     "lodash": "^4.17.15",
     "style-loader": "^1.0.0",
     "ts-loader": "^6.2.1",
+    "typescript": "^3.7.2",
     "url-loader": "^2.2.0",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.9",
@@ -36,6 +42,8 @@
     "webpack-dev-server": "^3.8.1"
   },
   "dependencies": {
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.4",
     "eslint": "^6.5.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"

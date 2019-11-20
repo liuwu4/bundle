@@ -6,7 +6,7 @@ const config = require('./webpack.config');
 const app = express();
 const complier = webpack(config);
 app.use(webpackMiddleware(complier,{
-  publicPath : config.output.publicPath
+  publicPath: config.output.publicPath
 }));
 app.listen(3000, function(){
   console.log('SUCCESS');
