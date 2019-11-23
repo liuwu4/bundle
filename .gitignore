@@ -3,4 +3,9 @@ node_modules
 yarn-error.log
 yarn.lock
 .DS_Store
+<<<<<<< HEAD
 .idea/
+=======
+.vscode/
+dist/
+>>>>>>> b24c59c09254f78abf274315183a9eb9c59de0e9
