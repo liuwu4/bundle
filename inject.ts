@@ -14,11 +14,11 @@ if (env[0] == 'production') {
 }
 const context = `
 //自动生成通过script脚本创建
- const url = {
+ export default {
     api: '${api}',
     debug: ${debug}
  }`;
-fs.writeFile('./src/env.config.ts', context, function (err: any) {
+fs.writeFile('./src/env.config.ts', context, function (err) {
   if (err) {
     return console.error(err);
   }
