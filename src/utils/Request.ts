@@ -19,19 +19,21 @@ function status(response: Array<Object>) {
     return JSON.parse(context);
   }
   throw new Error(raw)
-
 }
-function setHeader(type = "GET") {
-  const header = {
-    method: type,
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${Config.debug ? 1432 : 1234}`
-    },
+function setHeader(type = "GET", body?: object) {
+  const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${Config.debug ? 1432 : 1234}`
   }
-
-  return header;
+  if (type !== 'GET') {
+    Object.assign(headers, { body: JSON.stringify(body) });
+  }
+  return {
+    method: type,
+    credentials: 'include',
+    headers,
+  };
 }
 function path(url: string) {
   return Config.api + url;
@@ -39,17 +41,16 @@ function path(url: string) {
 
 const Request = {
   get(url: string) {
-    console.log('get', url);
     return sendFetch(path(url), setHeader());
   },
   post(url: string, body: object) {
-    console.log('post');
+    return sendFetch(path(url), setHeader("POST", body));
   },
   put(url: string, body: object) {
-    console.log('put');
+    return sendFetch(path(url), setHeader("PUT", body));
   },
   delete(url: string, body: object) {
-    console.log('delete');
+    return sendFetch(path(url), setHeader("DELETE", body));
   }
 };
 
