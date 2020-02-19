@@ -26,7 +26,7 @@ module.exports = {
         "comma-dangle": 2, // 不能使用尾随逗号
         "key-spacing": [2,{"beforeColon": false, "afterColon": true}],// 对象冒号前后是否能有空格
         "semi": 2, // 强制分号结尾
-        "quotes": [2, "single"],//引号类型 single 单
+        "quotes": [0, "single"],//引号类型 single 单
         "space-unary-ops": [2, { "words": false, "nonwords": true }],//一元运算符的前/后要不要加空格
         "space-in-parens": [2, "never"],//小括号里面要不要有空格
         "no-empty": [2, { "allowEmptyCatch": true}],// 禁止空语句块,但是catch允许为空
