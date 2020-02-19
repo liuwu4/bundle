@@ -1,0 +1,30 @@
+@headerColor: #f24;
+@siderColor: #fff;
+@siderWidth: 200px;
+@height: 700px;
+#container {
+  border: 1px solid #f24;
+  background-color: aqua;
+  min-height: 700px;
+}
+
+#container::after {
+  float: both;
+}
+.layoutHeader {
+  height: 120px;
+  background-color: @headerColor;
+}
+
+.layoutSider {
+  width: @siderWidth;
+  height: @height;
+  position: absolute;
+  background-color: @siderColor;
+  border-right: 1px solid #ff2244;
+}
+.layoutContent {
+  margin-left: @siderWidth;
+  min-height: @height;
+  background-color: aquamarine;
+}
