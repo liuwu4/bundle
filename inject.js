@@ -7,7 +7,7 @@ let api = 'http://localhost:8080/api';
 let debug = false;
 
 
-if (env[0] == 'production') {
+if (env[0] === 'production') {
   api = 'http://192.168.31.153:8080/api';
   debug = true;
 

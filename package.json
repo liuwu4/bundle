@@ -5,8 +5,8 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "develop": "node inject.ts develop",
-    "production": "node inject.ts production",
+    "develop": "node inject.js develop",
+    "production": "node inject.js production",
     "build": "webpack",
     "buildProduction": "webpack --mode=production",
     "buildDevelopment": "webpack --mode=development",
