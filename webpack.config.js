@@ -42,11 +42,12 @@ module.exports ={
         exclude: /node_modules/
       },
       {
-        test: /\.css$/,
+        test: /\.(c|le)ss$/,
         exclude: /node_modules/,
         use: [
           'style-loader',
-          'css-loader'
+          'css-loader',
+          'less-loader'
         ]
       },
       {
