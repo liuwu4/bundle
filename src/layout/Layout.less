@@ -1,30 +1,36 @@
 @headerColor: #f24;
-@siderColor: #fff;
-@siderWidth: 200px;
-@height: 700px;
+@siderColor : #fff;
+@siderWidth : 200px;
+@height     : 800px;
+
 #container {
-  border: 1px solid #f24;
+  border          : 1px solid #f24;
   background-color: aqua;
-  min-height: 700px;
+  min-height      : 700px;
 }
 
-#container::after {
-  float: both;
-}
-.layoutHeader {
-  height: 120px;
-  background-color: @headerColor;
+#container .layout {
+  background-color: #ff2244;
+  display         : flex;
+  flex-direction  : row;
 }
 
-.layoutSider {
-  width: @siderWidth;
-  height: @height;
-  position: absolute;
-  background-color: @siderColor;
-  border-right: 1px solid #ff2244;
+#container .layout .sider {
+  background-color: #fff;
 }
-.layoutContent {
-  margin-left: @siderWidth;
+
+#container .context {
   min-height: @height;
-  background-color: aquamarine;
+}
+
+#container .context .header {
+  background-color: #fff;
+  height          : 64px;
+}
+
+
+#container .context .content {
+  width     : 100%;
+  display   : inline-block;
+  min-height: @height - 64;
 }
