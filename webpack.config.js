@@ -16,7 +16,8 @@ module.exports ={
     contentBase: [path.join(__dirname, 'dist'), path.join(__dirname, 'src/images')],
     port: 12345,
     open: true,
-    hot: true
+    hot: true,
+    host: '0.0.0.0'
   },
   plugins: [
     new CleanWebpackPlugin(),
