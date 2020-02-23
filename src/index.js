@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import RouterConfig from './RouterConfig';
-import '@src/utils/global.less';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import 'antd/dist/antd.css';
-import { createStore, combineReducers } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import loginStateWill from '@src/data_stream/index';
-const store = createStore(combineReducers({ loginStateWill }));
-
+import 'antd/dist/antd.css';
+import '@src/utils/global.less';
+const createSaga = createSagaMiddleware();
+const store = createStore(combineReducers({ loginStateWill }), applyMiddleware(createSaga));
+createSaga.run(function *init(){
+  yield;
+});
 ReactDOM.render(
   <Provider store={store}>
     <RouterConfig />
