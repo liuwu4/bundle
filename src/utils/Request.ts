@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import Config from '@src/env.config';
 
 function sendFetch(url: string, options: object) {
@@ -21,19 +22,21 @@ function status(response: Array<Object>) {
   throw new Error(raw)
 }
 function setHeader(type = "GET", body?: object) {
+  const obj = {
+    method: type,
+    credentials: 'include',
+  };
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${Config.debug ? 1432 : 1234}`
+    'Authorization': `Bearer ${Config.debug ? Cookies.get('token') : 1234}`
   }
+
   if (type !== 'GET') {
-    Object.assign(headers, { body: JSON.stringify(body) });
+    Object.assign(obj, { headers: headers }, { body: JSON.stringify(body) });
   }
-  return {
-    method: type,
-    credentials: 'include',
-    headers,
-  };
+
+  return obj;
 }
 function path(url: string) {
   return Config.api + url;

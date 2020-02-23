@@ -1,8 +1,6 @@
 const login = {
-  loginInfo: {
-    user: "字符串"
-  },
-  name: ''
+  userName: '15082000855',
+  password: '123',
 }
 interface Action {
   type: string,
