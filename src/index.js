@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Router from './Router';
+import RouterConfig from './RouterConfig';
 import '@src/utils/global.less';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
+import 'antd/dist/antd.css';
 import { createStore, combineReducers } from 'redux';
 import loginStateWill from '@src/data_stream/index';
 const store = createStore(combineReducers({ loginStateWill }));
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router />
+    <RouterConfig />
   </Provider>, document.getElementById('app'));
