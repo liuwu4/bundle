@@ -19,6 +19,7 @@ module.exports ={
     hot: true,
     host: '0.0.0.0'
   },
+  mode: 'development',
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
@@ -35,20 +36,26 @@ module.exports ={
     rules: [
       {
         test: /\.(ts|js)x?$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader'
           }
-        ],
-        exclude: /node_modules/
+        ]
       },
       {
         test: /\.(c|le)ss$/,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
         use: [
-          'style-loader',
-          'css-loader',
-          'less-loader'
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'less-loader'
+          }
         ]
       },
       {
