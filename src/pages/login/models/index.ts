@@ -5,7 +5,7 @@ export default {
     const result = await LoginServices.login(phone, passwrod);
     const { code, data: token } = result;
     if (code === 200) {
-      Cookies.set('token', token);
+      Cookies.set('token', token, { expires: 1 });
     }
   }
 }
