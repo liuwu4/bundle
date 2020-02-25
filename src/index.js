@@ -7,11 +7,11 @@ import createSagaMiddleware from 'redux-saga';
 import loginStateWill from '@src/data_stream/index';
 import 'antd/dist/antd.css';
 import '@src/utils/global.less';
-const createSaga = createSagaMiddleware();
+import LoginSaga from '@src/data_stream/Login';
+
+const createSaga = createSagaMiddleware(LoginSaga);
 const store = createStore(combineReducers({ loginStateWill }), applyMiddleware(createSaga));
-createSaga.run(function *init(){
-  yield;
-});
+createSaga.run(LoginSaga);
 ReactDOM.render(
   <Provider store={store}>
     <RouterConfig />

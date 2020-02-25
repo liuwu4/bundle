@@ -1,8 +1,15 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import Cookies from 'js-cookie';
 import LoginForm from './components/LoginForm';
 import './assets/LoginStyle.less';
-export default class Login extends Component {
+import { withRouter } from 'react-router-dom';
+class Login extends PureComponent {
   render() {
+    const token = Cookies.get('token');
+    if (token) {
+      this.props.history.push('/admin');
+      return null;
+    }
     return (
       <div className="login">
         <LoginForm />
@@ -10,3 +17,5 @@ export default class Login extends Component {
     )
   }
 }
+
+export default withRouter(Login);

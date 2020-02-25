@@ -1,7 +1,7 @@
 import React from 'react';
-import { Form, Input, Button, Avatar } from 'antd';
-import LoginModel from '../models/index';
+import { Form, Input, Button } from 'antd';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 const labelCol = {
   span: 7
 }
@@ -22,11 +22,17 @@ const tailFormItemLayout = {
 };
 class LoginForm extends React.Component {
   handelSubmit() {
-    const { form: { validateFields } }: any = this.props;
+    const { form: { validateFields }, dispatch }: any = this.props;
     validateFields((error: object, value: object) => {
       if (!error) {
-        LoginModel.login(value.userName, value.password);
-        console.log('Received values of form: ', value);
+        console.log(this);
+        dispatch({
+          type: 'login',
+          payload: {
+            ...value
+          },
+          callback: () => this.props.history.push('/admin'),
+        });
       }
     });
   }
@@ -68,4 +74,4 @@ const stateToProps = (state: object) => {
   return { ...state }
 }
 
-export default connect(stateToProps)(Form.create({})(LoginForm));
+export default connect(stateToProps)(Form.create({})(withRouter(LoginForm)));

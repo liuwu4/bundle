@@ -9,7 +9,7 @@ interface Action {
 
 function loginStateWill(state = login, action: Action) {
   switch (action.type) {
-    case 'login':
+    case 'sign':
       const obj = { ...state, ...action.payload };
       return obj;
     default:
