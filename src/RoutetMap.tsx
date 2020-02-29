@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { HashRouter, Route, Switch, withRouter } from 'react-router-dom';
 import Layout from '@src/layout/index';
 import Admin from '@src/pages/admin/index';
-import Type from '@src/pages/admin/type/Type';
+import Type from '@src/pages/admin/components/Type';
 import Login from './pages/login/index';
 
 const RouterMap = (props: object) => {

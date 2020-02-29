@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Layout, Menu } from 'antd';
 import './Layout.less';
+import 'antd/dist/antd.css';
+
 import { Link } from 'react-router-dom';
 class Index extends Component {
   render() {

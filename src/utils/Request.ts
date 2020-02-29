@@ -31,11 +31,9 @@ function setHeader(type = "GET", body?: object) {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${Config.debug ? Cookies.get('token') : 1234}`
   }
-
   if (type !== 'GET') {
     Object.assign(obj, { headers: headers }, { body: JSON.stringify(body) });
   }
-
   return obj;
 }
 function path(url: string) {
@@ -46,13 +44,13 @@ const Request = {
   get(url: string) {
     return sendFetch(path(url), setHeader());
   },
-  post(url: string, body: object) {
+  post(url: string, body?: object) {
     return sendFetch(path(url), setHeader("POST", body));
   },
-  put(url: string, body: object) {
+  put(url: string, body?: object) {
     return sendFetch(path(url), setHeader("PUT", body));
   },
-  delete(url: string, body: object) {
+  delete(url: string, body?: object) {
     return sendFetch(path(url), setHeader("DELETE", body));
   }
 };

@@ -1,0 +1,26 @@
+@delete: #f24;
+@update: #faad14;
+.types {
+  .list {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    .list-item {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      .list-operation {
+        text-align: right;
+        :first-child {
+          color: @update;
+        }
+        :last-child {
+          color: @delete;
+        }
+        span {
+          cursor: pointer;
+          margin-right: 12px;
+        }
+      }
+    }
+  }
+}

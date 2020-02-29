@@ -26,8 +26,8 @@ module.exports ={
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/index.html')
-    }),
-    new Uglifyjs()
+    })
+    // new Uglifyjs()
   ],
   resolve: {
     extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],

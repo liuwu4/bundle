@@ -10,7 +10,7 @@
     "jsx": "react", /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
     "outDir": "dist", /* Redirect output structure to the directory. */
     "strict": true, /* Enable all strict type-checking options. */
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
       "@src/*": [
         "./src/*"
