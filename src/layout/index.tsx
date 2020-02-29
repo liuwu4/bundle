@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Menu } from 'antd';
 import './Layout.less';
-import 'antd/dist/antd.css';
 
 import { Link } from 'react-router-dom';
 class Index extends Component {
@@ -18,6 +17,7 @@ class Index extends Component {
               selectedKeys={[pathname]}
             >
               <Menu.SubMenu title="管理员" key='/admin'>
+                <Menu.Item key="/admin/test"><Link to="/admin/test">测试</Link></Menu.Item>
                 <Menu.Item key="/admin/info"><Link to="/admin/info">人员信息</Link></Menu.Item>
                 <Menu.Item key="/admin/type"><Link to="/admin/type">类型</Link></Menu.Item>
               </Menu.SubMenu>

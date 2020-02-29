@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie'
 import Config from '@src/env.config';
+import { message } from 'antd';
 
 function sendFetch(url: string, options: object) {
   return fetch(url, options)
@@ -11,6 +12,7 @@ function json(response: any) {
   if (contentType === 'application/json') {
     return Promise.all([response.text(), response]);;
   } else {
+    message.error({ content: '返回格式不是application/json' });
     throw new Error('返回格式不是application/json')
   }
 }
@@ -19,6 +21,7 @@ function status(response: Array<Object>) {
   if (raw.status >= 200 && raw.status <= 300) {
     return JSON.parse(context);
   }
+  message.error({ content: raw })
   throw new Error(raw)
 }
 function setHeader(type = "GET", body?: object) {

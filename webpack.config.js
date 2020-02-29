@@ -42,13 +42,12 @@ module.exports ={
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
           }
         ]
       },
       {
         test: /\.(c|le)ss$/,
-        // exclude: /node_modules/,
         use: [
           {
             loader: 'style-loader'
@@ -57,7 +56,15 @@ module.exports ={
             loader: 'css-loader'
           },
           {
-            loader: 'less-loader'
+            loader: 'less-loader',
+            options: {
+                     modifyVars: {
+                      'primary-color': '#1DA57A',
+                      'link-color': '#1DA57A',
+                      'border-radius-base': '2px',
+                    },
+                     javascriptEnabled: true,
+                   },
           }
         ]
       },

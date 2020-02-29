@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import '../assets/Type.less'
-import { Button, Input } from 'antd';
+import 'antd/dist/antd.css';
+
+import { Button, Input, Table } from 'antd';
 class Type extends React.Component {
   componentDidMount() {
     const { dispatch }: any = this.props;
@@ -97,6 +99,7 @@ class Type extends React.Component {
           </div>
         ))}
         <br />
+
         <Button onClick={this.handleAdd.bind(this)} type="default">＋</Button>
       </div>
     )
