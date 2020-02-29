@@ -4,14 +4,20 @@ import './Layout.less';
 import { Link } from 'react-router-dom';
 class Index extends Component {
   render() {
+    const { location }: any = this.props;
+    const { pathname } = location;
+    const path = pathname.match(/\/([a-zA-Z0-9])*/g);
     return (
       <div id="container">
         <Layout className="layout">
           <Layout.Sider className="sider">
-            <Menu mode="inline">
-              <Menu.SubMenu title="管理员">
-                <Menu.Item><Link to="/admin">人员信息</Link></Menu.Item>
-                <Menu.Item><Link to="/admin/type">类型</Link></Menu.Item>
+            <Menu mode="inline"
+              defaultOpenKeys={path[0]}
+              selectedKeys={[pathname]}
+            >
+              <Menu.SubMenu title="管理员" key='/admin'>
+                <Menu.Item key="/admin/info"><Link to="/admin/info">人员信息</Link></Menu.Item>
+                <Menu.Item key="/admin/type"><Link to="/admin/type">类型</Link></Menu.Item>
               </Menu.SubMenu>
             </Menu>
           </Layout.Sider>

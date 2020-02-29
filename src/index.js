@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import RouterConfig from './RouterConfig';
+import RouterMap from './RoutetMap';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
@@ -14,5 +14,5 @@ const store = createStore(combineReducers({ loginStateWill }), applyMiddleware(c
 createSaga.run(LoginSaga);
 ReactDOM.render(
   <Provider store={store}>
-    <RouterConfig />
+    <RouterMap />
   </Provider>, document.getElementById('app'));

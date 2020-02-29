@@ -6,19 +6,15 @@ import Admin from '@src/pages/admin/index';
 import Type from '@src/pages/admin/type/Type';
 import Login from './pages/login/index';
 
-const RouterConfig = (props: object) => {
+const RouterMap = (props: object) => {
   return (
     <HashRouter>
       <Switch>
         <Route exact path="/" component={Login} />
-        <Route exact path="/admin" component={() => {
-          return (
-            <Layout>
-              <Route exact path="/admin" component={Admin} />
-              <Route exact path="/admin/type" component={Type} />
-            </Layout>)
-        }}
-        />
+        <Layout>
+          <Route exact path="/admin/info" component={Admin} />
+          <Route exact path="/admin/type" component={Type} />
+        </Layout>
       </Switch>
     </HashRouter>
   )
@@ -26,7 +22,7 @@ const RouterConfig = (props: object) => {
 const mapStateToProps = (state: object) => {
   return { ...state };
 }
-export default (connect(mapStateToProps)(RouterConfig));
+export default (connect(mapStateToProps)(RouterMap));
 
 
 

@@ -2,6 +2,8 @@ const path = require('path');
 const resolve = dir => path.resolve(__dirname, dir);
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const  Uglifyjs = require('Uglifyjs-webpack-plugin');
+
 module.exports ={
   entry: {
     app: './src/index.js'
@@ -24,7 +26,8 @@ module.exports ={
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/index.html')
-    })
+    }),
+    new Uglifyjs()
   ],
   resolve: {
     extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
