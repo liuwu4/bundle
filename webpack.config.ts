@@ -2,15 +2,14 @@ const path = require('path');
 const resolve = dir => path.resolve(__dirname, dir);
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const  Uglifyjs = require('Uglifyjs-webpack-plugin');
 
-module.exports ={
+module.exports = {
   entry: {
     app: './src/index.js'
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname,'dist'),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
   devtool: 'inline-source-map',
@@ -27,7 +26,6 @@ module.exports ={
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/index.html')
     })
-    // new Uglifyjs()
   ],
   resolve: {
     extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
@@ -43,28 +41,27 @@ module.exports ={
         use: [
           {
             loader: 'babel-loader',
+            options: {
+
+            }
           }
         ]
       },
       {
         test: /\.(c|le)ss$/,
+        exclude: '/node_modules',
         use: [
           {
             loader: 'style-loader'
           },
           {
-            loader: 'css-loader'
+            loader: 'css-loader',
           },
           {
             loader: 'less-loader',
             options: {
-                     modifyVars: {
-                      'primary-color': '#1DA57A',
-                      'link-color': '#1DA57A',
-                      'border-radius-base': '2px',
-                    },
-                     javascriptEnabled: true,
-                   },
+              javascriptEnabled: true,
+            },
           }
         ]
       },

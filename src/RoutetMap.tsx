@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import Layout from '@src/layout/index';
 import Admin from '@src/pages/admin/index';
@@ -8,7 +7,7 @@ import Type from '@src/pages/admin/components/Type';
 import Login from '@src/pages/login/index';
 import Product from '@src/pages/product';
 
-const RouterMap = (props: object) => {
+const RouterMap = () => {
   return (
     <HashRouter>
       <Switch>
@@ -23,10 +22,7 @@ const RouterMap = (props: object) => {
     </HashRouter>
   )
 }
-const mapStateToProps = (state: object) => {
-  return { ...state };
-}
-export default (connect(mapStateToProps)(RouterMap));
+export default (RouterMap);
 
 
 

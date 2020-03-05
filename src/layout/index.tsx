@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Menu } from 'antd';
-import './Layout.less';
-
 import { Link } from 'react-router-dom';
+import './Layout.less';
 class Index extends Component {
   render() {
     const { location }: any = this.props;
