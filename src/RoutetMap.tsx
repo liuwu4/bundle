@@ -5,7 +5,8 @@ import Layout from '@src/layout/index';
 import Admin from '@src/pages/admin/index';
 import Test from '@src/pages/test';
 import Type from '@src/pages/admin/components/Type';
-import Login from './pages/login/index';
+import Login from '@src/pages/login/index';
+import Product from '@src/pages/product';
 
 const RouterMap = (props: object) => {
   return (
@@ -16,6 +17,7 @@ const RouterMap = (props: object) => {
           <Route exact path="/admin/test" component={Test} />
           <Route exact path="/admin/info" component={Admin} />
           <Route exact path="/admin/type" component={Type} />
+          <Route exact path="/admin/product" component={Product} />
         </Layout>
       </Switch>
     </HashRouter>

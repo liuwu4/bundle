@@ -13,14 +13,12 @@ class Index extends Component {
         <Layout className="layout">
           <Layout.Sider className="sider">
             <Menu mode="inline"
-              defaultOpenKeys={path[0]}
               selectedKeys={[pathname]}
             >
-              <Menu.SubMenu title="管理员" key='/admin'>
-                <Menu.Item key="/admin/test"><Link to="/admin/test">测试</Link></Menu.Item>
-                <Menu.Item key="/admin/info"><Link to="/admin/info">人员信息</Link></Menu.Item>
-                <Menu.Item key="/admin/type"><Link to="/admin/type">类型</Link></Menu.Item>
-              </Menu.SubMenu>
+              <Menu.Item key="/admin/test"><Link to="/admin/test">测试</Link></Menu.Item>
+              <Menu.Item key="/admin/info"><Link to="/admin/info">人员信息</Link></Menu.Item>
+              <Menu.Item key="/admin/type"><Link to="/admin/type">类型</Link></Menu.Item>
+              <Menu.Item key="/admin/product"><Link to="/admin/product">产品</Link></Menu.Item>
             </Menu>
           </Layout.Sider>
           <Layout className="context">

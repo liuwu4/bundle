@@ -99,7 +99,6 @@ class Type extends React.Component {
           </div>
         ))}
         <br />
-
         <Button onClick={this.handleAdd.bind(this)} type="default">＋</Button>
       </div>
     )

@@ -1,7 +1,9 @@
 const data = {
   userName: '15082000855',
   password: '123',
-  types: []
+  types: [],
+  products: [],
+  addModel: false,
 }
 interface Action {
   type: string,
