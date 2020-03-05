@@ -6,7 +6,6 @@ import createSagaMiddleware from 'redux-saga';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import '@src/utils/global.less';
-import'antd/dist/antd.less';
 import RouterMap from './RoutetMap';
 import loginStateWill from '@src/data_stream/index';
 import LoginSaga from '@src/data_stream/Login';

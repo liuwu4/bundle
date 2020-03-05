@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Button } from 'antd';
+import { Table, Button, message } from 'antd';
 const TestTable = () => {
   return (
     <div>
@@ -21,7 +21,9 @@ const TestTable = () => {
           }
         ]}
       />
-      <Button type="primary">ceshi范德萨范德萨 </Button>
+      <Button onClick={() => {
+        message.success({ content: '测试' });
+      }} type="primary">ceshi范德萨范德萨 </Button>
     </div>
   )
 }
