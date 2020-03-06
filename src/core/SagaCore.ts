@@ -24,7 +24,6 @@ function* login(action: object) {
 
 function* type() {
   const { data } = yield call(AdminService.types);
-  console.log('types');
   yield put({
     type: 'sign',
     payload: {
@@ -110,6 +109,7 @@ function* deleteProduct(action: any) {
   }
 }
 function* init() {
+  message.destroy();
   yield takeEvery('login', login);
   yield takeEvery('types', type);
   yield takeEvery('delete', deleteType);

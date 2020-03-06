@@ -25,7 +25,6 @@ class LoginForm extends React.Component {
     const { form: { validateFields }, dispatch }: any = this.props;
     validateFields((error: object, value: object) => {
       if (!error) {
-        console.log(this);
         dispatch({
           type: 'login',
           payload: {

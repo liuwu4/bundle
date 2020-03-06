@@ -3,8 +3,6 @@ import { Table, Button, message } from 'antd';
 const TestTable = () => {
   return (
     <div>
-
-
       <Table
         columns={[
           {

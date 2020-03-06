@@ -82,8 +82,8 @@ class Type extends React.Component {
   }
 
   render() {
-    const { loginStateWill }: any = this.props;
-    const { types } = loginStateWill;
+    const { login }: any = this.props;
+    const { types } = login;
     return (
       <div className="types">
         {types.map((item: any, index: number) => (

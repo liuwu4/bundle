@@ -34,7 +34,7 @@ module.exports = {
       filename: './css/[name].css'
     }),
     new ProgressBarWebpackPlugin(),
-    new WebpackBuildNotifier()
+    // new WebpackBuildNotifier()
   ],
   resolve: {
     extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
@@ -50,15 +50,12 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            options: {
-
-            }
           }
         ]
       },
       {
         test: /\.(c|le)ss$/,
-        exclude: '/node_modules',
+        exclude: /node_modules/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader
@@ -71,10 +68,28 @@ module.exports = {
           },
           {
             loader: 'less-loader',
+          }
+        ]
+      },
+      {
+        test: /\.(c|le)ss$/,
+        exclude: /src/,
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'less-loader',
             options: {
+              modifyVars: {
+                'primary-color': '#f24',
+                'link-color': '#1DA57A',
+                'border-radius-base': '2px',
+              },
               javascriptEnabled: true,
             },
-          }
+          },
         ]
       },
       {
