@@ -37,8 +37,8 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const { loginStateWill, form: { getFieldDecorator } }: any = this.props;
-    const { userName, password } = loginStateWill;
+    const { login, form: { getFieldDecorator } }: any = this.props;
+    const { userName, password } = login;
     return (
       <div className="loginForm">
         <p>欢迎使用xx管理系统</p>
