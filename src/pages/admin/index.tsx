@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import { Avatar, Row, Col } from 'antd';
-import AdminServer from './services/Admin';
+import AdminServer from './services';
 import './assets/Admin.less'
-export default class Admin extends Component {
+import { connect } from 'react-redux';
+class Admin extends Component {
   state = {
     user: [],
   }
   async componentDidMount() {
-    const result = await AdminServer.users();
-    const { data } = result;
-    this.setState({
-      user: data
+    const { dispatch }: any = this.props;
+    dispatch({
+      type: 'users',
     })
+
   }
   render() {
-    const { user } = this.state;
+    const { adminReducer }: any = this.props;
+    const { user } = adminReducer;
     return (
       <div className="admin">
         {
-          user.map((item: any, index) => (
+          user.map((item: any, index: number) => (
             <div className="card" key={index}>
               <div style={{ textAlign: 'center' }} >
                 <Avatar icon="user" />
@@ -53,3 +55,8 @@ export default class Admin extends Component {
     )
   }
 }
+const mapStateToProps = (state: object) => {
+  return { ...state };
+};
+
+export default connect(mapStateToProps)(Admin);

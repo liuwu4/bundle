@@ -1,4 +1,7 @@
-const state = {};
+const state = {
+  products: [],
+  addModel: false,
+};
 
 function ProductReducer(init = state, action: Action) {
   const { type, payload } = action;

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Table, Button, message } from 'antd';
-const TestTable = () => {
+import { connect } from 'react-redux';
+const TestTable = (props: any) => {
+  const { dispatch } = props;
   return (
     <div>
       <Table
@@ -20,9 +22,11 @@ const TestTable = () => {
         ]}
       />
       <Button onClick={() => {
-        message.success({ content: '测试' });
+        dispatch({
+          type: 'test'
+        })
       }} type="primary">ceshi范德萨范德萨 </Button>
     </div>
   )
 }
-export default TestTable;
+export default connect()(TestTable);

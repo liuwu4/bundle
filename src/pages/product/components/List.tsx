@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Row, Button } from 'antd';
 import Add from './Add';
 const List = (props: object) => {
-  const { login: { products }, dispatch }: any = props;
+  const { productReducer: { products }, dispatch }: any = props;
   const handleDelete = (no: number) => {
     dispatch({
       type: 'deleteProduct',

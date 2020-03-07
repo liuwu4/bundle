@@ -1,5 +1,8 @@
 
-const state = {};
+const state = {
+  types: [],
+  user: [],
+};
 function adminReducer(init = state, action: Action) {
   const { type, payload } = action;
   if (type === 'adminWillUpdate') {

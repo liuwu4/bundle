@@ -1,9 +1,6 @@
 const state = {
   userName: '15082000855',
   password: '123',
-  types: [],
-  products: [],
-  addModel: false,
 }
 function loginReducer(init = state, action: Action) {
   switch (action.type) {

@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { Card, Icon, Modal, Form, Row, Col, Select, Input, DatePicker, Button } from 'antd';
 
 const Add = (props: any) => {
-  const { login, form, dispatch } = props;
-  const { addModel, types } = login;
+  const { productReducer, adminReducer, form, dispatch } = props;
+  const { types } = adminReducer;
+  const { addModel } = productReducer;
   const { getFieldDecorator } = form;
   useEffect(() => {
     dispatch({
