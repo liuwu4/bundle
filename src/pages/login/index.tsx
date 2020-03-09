@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 import LoginForm from './components/LoginForm';
 import './assets/LoginStyle.less';
 import { withRouter } from 'react-router-dom';
-class Login extends PureComponent {
+class Login extends Component {
   render() {
     const token = Cookies.get('token');
     if (token) {

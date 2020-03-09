@@ -30,7 +30,6 @@ class LoginForm extends React.Component {
           payload: {
             ...value
           },
-          callback: () => this.props.history.push('/admin'),
         });
       }
     });

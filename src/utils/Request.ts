@@ -32,7 +32,7 @@ function setHeader(type = "GET", body?: object) {
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${Config.debug ? Cookies.get('token') : 1234}`
+    'Authorization': `Bearer ${Config.debug ? Cookies.get('token') : 1234}`,
   }
   if (type !== 'GET') {
     Object.assign(obj, { headers: headers }, { body: JSON.stringify(body) });
