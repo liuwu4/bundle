@@ -5,7 +5,10 @@ import { message } from 'antd';
 function sendFetch(url: string, options: object) {
   return fetch(url, options)
     .then(json)
-    .then(status);
+    .then(status)
+    .cache(() => {
+      message.error('Faild to fetch');
+    });
 }
 function json(response: any) {
   const contentType = response.headers.get("content-type");
