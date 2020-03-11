@@ -7,14 +7,7 @@ import '@src/utils/global.less';
 import 'antd/dist/antd.css';
 import Root from './core/index';
 import RouterMap from './RoutetMap';
-import Admin from '@src/pages/admin/models';
-import Product from '@src/pages/product/models';
-import Login from '@src/pages/login/models';
-import Test from '@src/pages/test/Test';
-Root.run(Login);
-Root.run(Test);
-Root.run(Admin);
-Root.run(Product);
+Root.run();
 ReactDOM.render(
   <Provider store={Root.store}>
     <ConfigProvider locale={zhCN}>

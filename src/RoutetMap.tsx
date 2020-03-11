@@ -6,8 +6,9 @@ import Test from '@src/pages/test';
 import Type from '@src/pages/admin/components/Type';
 import Login from '@src/pages/login/index';
 import Product from '@src/pages/product';
+import { connect } from 'react-redux';
 
-const RouterMap = () => {
+const RouterMap = (props: any) => {
   return (
     <HashRouter>
       <Switch>
@@ -22,7 +23,10 @@ const RouterMap = () => {
     </HashRouter>
   )
 }
-export default (RouterMap);
+const mapStateToProps = (state: any) => {
+  return { ...state }
+};
+export default connect(mapStateToProps)(RouterMap);
 
 
 

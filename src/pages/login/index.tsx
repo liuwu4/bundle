@@ -7,6 +7,7 @@ class Login extends Component {
   render() {
     const token = Cookies.get('token');
     if (token) {
+      console.log('登录');
       this.props.history.push('/admin');
       return null;
     }

@@ -83,7 +83,6 @@ class Type extends React.Component {
 
   render() {
     const { adminReducer }: any = this.props;
-    console.log(this.props);
     const { types } = adminReducer;
     return (
       <div className="types">

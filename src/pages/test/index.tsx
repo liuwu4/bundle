@@ -3,6 +3,7 @@ import { Table, Button, message } from 'antd';
 import { connect } from 'react-redux';
 const TestTable = (props: any) => {
   const { dispatch } = props;
+  console.log(props);
   return (
     <div>
       <Table
@@ -23,10 +24,16 @@ const TestTable = (props: any) => {
       />
       <Button onClick={() => {
         dispatch({
-          type: 'test'
+          type: 'test/test',
+          payload: {
+            test: '2342143214'
+          }
         })
       }} type="primary">ceshi范德萨范德萨 </Button>
     </div>
   )
 }
-export default connect()(TestTable);
+const mapStateToProps = (state: object) => {
+  return { ...state };
+}
+export default connect(mapStateToProps)(TestTable);

@@ -1,4 +1,4 @@
-interface Action {
+interface Actions {
   type: string,
-  payload: object,
+  payload?: object,
 }
