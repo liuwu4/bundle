@@ -10,13 +10,13 @@ class Admin extends Component {
   async componentDidMount() {
     const { dispatch }: any = this.props;
     dispatch({
-      type: 'users',
+      type: 'admin/user',
     })
 
   }
   render() {
-    const { adminReducer }: any = this.props;
-    const { user } = adminReducer;
+    const { admin }: any = this.props;
+    const { user } = admin;
     return (
       <div className="admin">
         {

@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { Card, Icon, Modal, Form, Row, Col, Select, Input, DatePicker, Button } from 'antd';
 
 const Add = (props: any) => {
-  const { productReducer, adminReducer, form, dispatch } = props;
-  const { types } = adminReducer;
-  const { addModel } = productReducer;
+  const { product, admin, form, dispatch } = props;
+  const { types } = admin;
+  const { addModel } = product;
   const { getFieldDecorator } = form;
   useEffect(() => {
     dispatch({
-      type: 'types',
+      type: 'admin/types',
     })
   }, []);
   const handleAdd = (e: any) => {
@@ -21,7 +21,7 @@ const Add = (props: any) => {
   }
   const sendDispatch = (params: object) => {
     dispatch({
-      type: 'addProduct',
+      type: 'admin/addProduct',
       payload: {
         ...params,
       }
@@ -32,7 +32,7 @@ const Add = (props: any) => {
     const { validateFields } = form;
     validateFields((error: any, value: any) => {
       dispatch({
-        type: 'addList',
+        type: 'admin/addList',
         payload: {
           value: { ...value, productionDate: new Date() }
         }

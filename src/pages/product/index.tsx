@@ -6,7 +6,7 @@ const Index = (props: object) => {
   const { dispatch }: any = props;
   useEffect(() => {
     dispatch({
-      type: 'products',
+      type: 'product/products',
     })
   }, []);
   return (

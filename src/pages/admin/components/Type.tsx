@@ -8,56 +8,55 @@ class Type extends React.Component {
   componentDidMount() {
     const { dispatch }: any = this.props;
     dispatch({
-      type: 'types'
+      type: 'admin/type'
     });
   }
 
   handleDelete(typeId: number) {
     const { dispatch }: any = this.props;
     dispatch({
-      type: 'delete',
+      type: 'admin/deleteType',
       payload: {
         typeId
       }
     })
   }
   handleAdd() {
-    const { loginStateWill, dispatch }: any = this.props;
-    const { types } = loginStateWill;
+    const { admin, dispatch }: any = this.props;
+    const { types } = admin;
     const addType = { typeId: types.length, typeName: '', flag: true, newId: types.length };
     dispatch({
-      type: 'sign',
+      type: 'admin/stateWillUpdate',
       payload: {
         types: [...types, addType],
       }
     })
   }
   handleUpdate(typeIndex: number) {
-    const { loginStateWill, dispatch }: any = this.props;
-    const { types } = loginStateWill;
+    const { admin, dispatch }: any = this.props;
+    const { types } = admin;
     const clone = types;
     const data = clone[typeIndex];
     const isAdd = data.newId;
     if (isAdd) {
       dispatch({
-        type: 'addType',
+        type: 'admin/postType',
         payload: {
-          type: data[0]
+          type: data
         }
       })
     } else {
-
       if (!data.flag) {
         clone[typeIndex].flag = true;
         dispatch({
-          type: 'sign',
+          type: 'admin/stateWillUpdate',
           payload: {
             types: clone,
           }
         });
       } else {
         dispatch({
-          type: 'updateType',
+          type: 'admin/putType',
           payload: {
             type: data,
             typeId: data.typeId,
@@ -68,13 +67,13 @@ class Type extends React.Component {
   }
 
   handleChange(typeIndex: number, e: any) {
-    const { loginStateWill, dispatch }: any = this.props;
-    const { types } = loginStateWill;
+    const { admin, dispatch }: any = this.props;
+    const { types } = admin;
     const { value } = e.target;
     const clone = types;
     clone[typeIndex].typeName = value;
     dispatch({
-      type: 'sign',
+      type: 'admin/stateWillUpdate',
       payload: {
         types: clone,
       }
@@ -82,8 +81,8 @@ class Type extends React.Component {
   }
 
   render() {
-    const { adminReducer }: any = this.props;
-    const { types } = adminReducer;
+    const { admin }: any = this.props;
+    const { types } = admin;
     return (
       <div className="types">
         {types.map((item: any, index: number) => (
