@@ -1,11 +1,12 @@
 import React from 'react';
 import { Table, Button, message } from 'antd';
 import { connect } from 'react-redux';
+import './assets/styles/index.less';
+
 const TestTable = (props: any) => {
   const { dispatch } = props;
-  console.log(props);
   return (
-    <div>
+    <div className="test">
       <Table
         columns={[
           {
@@ -23,6 +24,7 @@ const TestTable = (props: any) => {
         ]}
       />
       <Button onClick={() => {
+        message.info({ content: '测试样式是否正常' });
         dispatch({
           type: 'test/test',
           payload: {

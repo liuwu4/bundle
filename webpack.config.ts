@@ -14,13 +14,11 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
   },
   devtool: 'inline-source-map',
   devServer: {
     contentBase: [path.join(__dirname, 'dist'), path.join(__dirname, 'src/images')],
     port: 12345,
-    open: true,
     hot: true,
     host: '0.0.0.0'
   },
@@ -28,13 +26,18 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      title: 'webpack+react+bable+antd',
+      minify: { // 压缩HTML文件
+        removeComments: true, // 移除HTML中的注释
+        collapseWhitespace: true, // 删除空白符与换行符
+        minifyCSS: true// 压缩内联css
+      },
       template: path.resolve(__dirname, 'src/index.html')
     }),
     new MiniCssExtractPlugin({
-      filename: './css/[name].css'
+      filename: 'dist/css/[name].css'
     }),
     new ProgressBarWebpackPlugin(),
-    // new WebpackBuildNotifier()
   ],
   resolve: {
     extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
@@ -103,7 +106,6 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      chunks: "all"
     },
     minimizer: [
       new TerserPlugin({}),

@@ -4,8 +4,8 @@ import Cookies from 'js-cookie';
 export default {
   namespace: 'login',
   state: {
-    userName: '',
-    password: '',
+    userName: '15082000855',
+    password: '123',
   },
   reducer: {
     stateWillUpdate(state: object, action: Actions) {

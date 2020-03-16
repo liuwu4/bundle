@@ -26,7 +26,7 @@ class LoginForm extends React.Component {
     validateFields((error: object, value: object) => {
       if (!error) {
         dispatch({
-          type: 'login',
+          type: 'login/sign',
           payload: {
             ...value
           },
