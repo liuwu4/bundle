@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
 const labelCol = {
   span: 7
 }
@@ -22,13 +21,14 @@ const tailFormItemLayout = {
 };
 class LoginForm extends React.Component {
   handelSubmit() {
-    const { form: { validateFields }, dispatch }: any = this.props;
+    const { history, form: { validateFields }, dispatch }: any = this.props;
     validateFields((error: object, value: object) => {
       if (!error) {
         dispatch({
           type: 'login/sign',
           payload: {
-            ...value
+            ...value,
+            callback: history.push('/admin')
           },
         });
       }
@@ -38,6 +38,7 @@ class LoginForm extends React.Component {
   render() {
     const { login, form: { getFieldDecorator } }: any = this.props;
     const { userName, password } = login;
+    console.log(this.props);
     return (
       <div className="loginForm">
         <p>欢迎使用xx管理系统</p>
@@ -72,4 +73,4 @@ const stateToProps = (state: object) => {
   return { ...state }
 }
 
-export default connect(stateToProps)(Form.create({})(withRouter(LoginForm)));
+export default connect(stateToProps)(Form.create({})(LoginForm));

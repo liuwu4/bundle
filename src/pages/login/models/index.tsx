@@ -15,10 +15,11 @@ export default {
   effects: {
     * sign(action: Actions, helper: Helper) {
       const { call } = helper;
-      const { payload: { userName, password } }: any = action;
+      const { payload: { userName, password }, callback }: any = action;
       const { code, data: token } = yield call(LoginServices.login, userName, password);
       if (code === 200) {
         yield call(Cookies.set, 'token', token, { expires: 1 });
+        callback;
       }
     }
   }
