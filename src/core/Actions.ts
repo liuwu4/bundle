@@ -1,4 +1,4 @@
 interface Actions {
   type: string,
-  payload?: object,
+  payload?: any,
 }

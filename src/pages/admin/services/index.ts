@@ -14,5 +14,9 @@ export default {
   },
   putType(typeId: number, type: object) {
     return Request.put(`/type/${typeId}`, type);
+  },
+  importExcel(file: any) {
+    console.log(file);
+    return Request.post(`/type/import`, file)
   }
 }

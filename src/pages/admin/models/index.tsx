@@ -38,7 +38,7 @@ export default {
     },
     * deleteType(action: Actions, helper: Helper) {
       const { call, put } = helper;
-      const { payload }: any = action;
+      const { payload } = action;
       const { typeId } = payload;
       const { code } = yield call(AdminService.deleteType, typeId);
       if (code === 200) {
@@ -50,7 +50,7 @@ export default {
     },
     * postType(action: Actions, helper: Helper) {
       const { call, put } = helper;
-      const { payload }: any = action;
+      const { payload } = action;
       const { type } = payload;
       const { code } = yield call(AdminService.postType, type);
       if (code === 200) {
@@ -62,7 +62,7 @@ export default {
     },
     * putType(action: Actions, helper: Helper) {
       const { call, put } = helper;
-      const { payload }: any = action;
+      const { payload } = action;
       const { type, typeId } = payload;
       const { code } = yield call(AdminService.putType, typeId, type);
       if (code === 200) {
@@ -71,6 +71,6 @@ export default {
           type: 'type'
         });
       }
-    }
+    },
   }
 }

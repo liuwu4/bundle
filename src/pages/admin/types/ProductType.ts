@@ -2,6 +2,6 @@ interface ProductType {
     typeId: number;
     typeNum: string;
     typeName: string;
-    flag: boolean;
+    flag?: boolean;
     newId?: number;
 }

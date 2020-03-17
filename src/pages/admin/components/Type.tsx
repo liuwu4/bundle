@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import '../assets/Type.less'
-import { EditColumns } from '../utils/Helper';
+import Config from '@src/env.config';
 
-import { Button, Input, Table, Row, Col } from 'antd';
+import { Button, Input, Table, Row, Col, Upload, message } from 'antd';
+declare var window: any;
 class Type extends React.Component {
 
   componentDidMount() {
@@ -37,7 +38,6 @@ class Type extends React.Component {
 
 
   handleUpdate(colType: ProductType) {
-    console.log(colType);
     const { admin, dispatch }: any = this.props;
     const { types } = admin;
     const clone = types;
@@ -71,7 +71,6 @@ class Type extends React.Component {
     const { value } = e.target;
     const clone = types;
     record = { ...record, typeName: value };
-    console.log(record);
     clone.map((item: ProductType) => {
       if (item.typeId === record.typeId) {
         Object.assign(item, record);
@@ -84,6 +83,24 @@ class Type extends React.Component {
         types: clone
       }
     });
+  }
+  handleDownload() {
+    window.open(`${Config.api}/type/download`, '_self');
+  }
+
+  uploadChange(obj: any) {
+    const { dispatch }: any = this.props;
+    const { file } = obj;
+    const { status: done } = file;
+    if (done === 'done') {
+      const { response: { code } } = file;
+      if (code === 200) {
+        message.success('导入成功');
+        dispatch({
+          type: 'admin/type'
+        });
+      }
+    }
   }
 
   renderColumns() {
@@ -121,17 +138,45 @@ class Type extends React.Component {
     ];
     return columns;
   }
+
   render() {
     const { admin }: any = this.props;
     const { types } = admin;
     return (
-      <div style={{ background: '#fff' }}>
-        <Table
-          bordered
-          columns={this.renderColumns()}
-          dataSource={types}
-          rowKey={(item: any) => item.typeId}
-        />
+      <div>
+        <div style={{ background: '#fff', padding: '10px 10px' }}>
+          <Row>
+            <Col span={4}>
+              <Button type="danger" onClick={this.handleDownload.bind(this)}>下载模板</Button>
+            </Col>
+            <Col span={4}>
+              <input name="file" id="upload" type="file" hidden />
+              <Upload
+                name="file"
+                method="post"
+                withCredentials
+                action={`${Config.api}/type/import`}
+                showUploadList={false}
+                onChange={this.uploadChange.bind(this)}
+              >
+
+                <Button type="danger" >批量导入</Button>
+              </Upload>
+            </Col>
+            <Col span={8} style={{ textAlign: 'left', display: 'flex' }}>
+              <Input placeholder="请输入类型编号" onChange={(e) => { }} />
+              <Button type="primary" style={{ marginLeft: 10 }}>查询</Button>
+            </Col>
+          </Row>
+        </div>
+        <div style={{ background: '#fff', marginTop: 12 }}>
+          <Table
+            bordered
+            columns={this.renderColumns()}
+            dataSource={types}
+            rowKey={(item: any) => item.typeId}
+          />
+        </div>
       </div>
     )
   }
