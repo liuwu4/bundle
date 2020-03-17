@@ -14,7 +14,7 @@ export default {
     }
   },
   effects: {
-    * user(actions: Actions, helper: Helper) {
+    * user(_actions: Actions, helper: Helper) {
       const { call, put } = helper;
       const { code, data } = yield call(AdminService.users);
       if (code === 200) {
@@ -26,7 +26,7 @@ export default {
         })
       }
     },
-    * type(actions: Actions, helper: Helper) {
+    * type(_actions: Actions, helper: Helper) {
       const { call, put } = helper;
       const { data } = yield call(AdminService.types);
       yield put({

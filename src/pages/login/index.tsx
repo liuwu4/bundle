@@ -6,7 +6,6 @@ import './assets/LoginStyle.less';
 const Login = (props: any) => {
   const { history } = props;
   const token = Cookies.get('token');
-  console.log('token', token);
   if (token) {
     history.push('/admin');
     return null;

@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import '../assets/Type.less'
-import 'antd/dist/antd.css';
+import { EditColumns } from '../utils/Helper';
 
-import { Button, Input, Table } from 'antd';
+import { Button, Input, Table, Row, Col } from 'antd';
 class Type extends React.Component {
+
   componentDidMount() {
     const { dispatch }: any = this.props;
     dispatch({
@@ -19,8 +20,9 @@ class Type extends React.Component {
       payload: {
         typeId
       }
-    })
+    });
   }
+
   handleAdd() {
     const { admin, dispatch }: any = this.props;
     const { types } = admin;
@@ -30,75 +32,106 @@ class Type extends React.Component {
       payload: {
         types: [...types, addType],
       }
-    })
+    });
   }
-  handleUpdate(typeIndex: number) {
+
+
+  handleUpdate(colType: ProductType) {
+    console.log(colType);
     const { admin, dispatch }: any = this.props;
     const { types } = admin;
     const clone = types;
-    const data = clone[typeIndex];
-    const isAdd = data.newId;
-    if (isAdd) {
+    if (colType.flag) {
       dispatch({
-        type: 'admin/postType',
+        type: 'admin/putType',
         payload: {
-          type: data
+          type: colType,
+          typeId: colType.typeId
         }
-      })
+      });
     } else {
-      if (!data.flag) {
-        clone[typeIndex].flag = true;
-        dispatch({
-          type: 'admin/stateWillUpdate',
-          payload: {
-            types: clone,
-          }
-        });
-      } else {
-        dispatch({
-          type: 'admin/putType',
-          payload: {
-            type: data,
-            typeId: data.typeId,
-          }
-        });
-      }
+      clone.map((item: ProductType) => {
+        if (colType.typeId === item.typeId) {
+          item.flag = true;
+        }
+        return { ...item };
+      });
+      dispatch({
+        type: 'admin/stateWillUpdate',
+        payload: {
+          types: clone
+        }
+      });
     }
   }
 
-  handleChange(typeIndex: number, e: any) {
+  handleChange(record: ProductType, e: any) {
     const { admin, dispatch }: any = this.props;
     const { types } = admin;
     const { value } = e.target;
     const clone = types;
-    clone[typeIndex].typeName = value;
+    record = { ...record, typeName: value };
+    console.log(record);
+    clone.map((item: ProductType) => {
+      if (item.typeId === record.typeId) {
+        Object.assign(item, record);
+      }
+      return { ...item };
+    });
     dispatch({
       type: 'admin/stateWillUpdate',
       payload: {
-        types: clone,
+        types: clone
       }
-    })
+    });
   }
 
+  renderColumns() {
+    const columns = [
+      {
+        title: "序号",
+        dataIndex: 'typeId',
+        width: '25%'
+      },
+      {
+        title: '类型编号',
+        dataIndex: 'typeNum',
+        width: '25%'
+      },
+      {
+        title: "类型名称",
+        dataIndex: 'typeName',
+        width: '25%',
+        render: (text: string, record: ProductType) => {
+          return (record.flag ? <Input value={text} onChange={this.handleChange.bind(this, record)} /> : text)
+        }
+      },
+      {
+        title: '操作',
+        dataIndex: 'operations',
+        width: '25%',
+        render: (_text: any, col: ProductType) => {
+          return (
+            <Row>
+              <Col span={12} style={{ color: '#1890ff', cursor: 'pointer' }}><span onClick={this.handleUpdate.bind(this, col)}>{col.flag ? '完成' : '修改'}</span></Col>
+              <Col span={12} style={{ color: '#f24', cursor: 'pointer' }}><span onClick={this.handleDelete.bind(this, col.typeId)}>删除</span></Col>
+            </Row>);
+        }
+      }
+    ];
+    return columns;
+  }
   render() {
     const { admin }: any = this.props;
     const { types } = admin;
     return (
-      <div className="types">
-        {types.map((item: any, index: number) => (
-          <div key={item.typeId} className="list" >
-            <div className='list-item'>
-              <span>{item.typeId}</span>
-              <span>{item.flag ? <Input value={item.typeName} onChange={this.handleChange.bind(this, index)} /> : item.typeName}</span>
-              <div className='list-operation'>
-                <span onClick={this.handleUpdate.bind(this, index)}>{item.flag ? '完成' : '修改'}</span>
-                <span onClick={this.handleDelete.bind(this, item.typeId)}>删除</span>
-              </div>
-            </div>
-          </div>
-        ))}
-        <br />
-        <Button onClick={this.handleAdd.bind(this)} type="default">＋</Button>
+      <div style={{ background: '#fff' }}>
+        <Table
+          bordered
+          columns={this.renderColumns()}
+          dataSource={types}
+          rowKey={(item: any) => item.typeId}
+        />
       </div>
     )
   }

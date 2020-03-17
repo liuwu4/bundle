@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Avatar, Row, Col } from 'antd';
-import AdminServer from './services';
+import { Avatar, Row, Col, Form } from 'antd';
 import './assets/Admin.less'
 import { connect } from 'react-redux';
 class Admin extends Component {
@@ -19,38 +18,21 @@ class Admin extends Component {
     const { user } = admin;
     return (
       <div className="admin">
+        <div className="card"></div>
+
         {
           user.map((item: any, index: number) => (
             <div className="card" key={index}>
-              <div style={{ textAlign: 'center' }} >
-                <Avatar icon="user" />
-              </div>
-              <div className="list">
-                <span>用户昵称：</span>{item.nickname}
-              </div>
-              <div className="list" >
-                <span>手机号：</span>   {item.phone}
-              </div>
-              <div className="list">
-                <span>性别：</span> {item.sex === 2 ? '保密' : item.sex === 1 ? '女' : '男'}
-              </div>
-              <div className="list">
-                <span>状态：</span> {item.status === 1 ? '启用' : '禁用'}
-              </div>
-              <Row style={{ textAlign: 'center', marginTop: 5 }}>
-                <Col span={8}>
-                  <a type="primary">启用</a>
-                </Col>
-                <Col span={8}>
-                  <a type="danger" style={{ color: '' }}>禁用</a>
-                </Col>
-                <Col span={8}>
-                  <a type="danger" style={{ color: '#f24' }}>删除</a>
-                </Col>
-              </Row>
+              <Form labelCol={{ span: 12 }} wrapperCol={{ span: 12 }}>
+                <Form.Item label="用户昵称">{item.nickname}</Form.Item>
+                <Form.Item label="手机号">{item.phone}</Form.Item>
+                <Form.Item label="性别">{item.sex === 2 ? '保密' : item.sex === 1 ? '女' : '男'}</Form.Item>
+                <Form.Item label="状态">{item.status === 1 ? '启用' : '禁用'}</Form.Item>
+              </Form>
             </div>
           ))
         }
+
       </div>
     )
   }
