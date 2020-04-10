@@ -39,8 +39,6 @@ module.exports = {
         "react/jsx-uses-react": 2,
         "no-unused-vars": 0,
         "no-multi-spaces": 1,
-        "no-trailing-spaces": 1,
-        "eqeqeq": 2,
         "no-implicit-dependencies": ["optional", ["src"]]
     }
 };

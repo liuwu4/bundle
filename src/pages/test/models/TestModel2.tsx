@@ -4,7 +4,7 @@ export default {
     test: '',
   },
   effects: {
-    * test(actions: Action, helper: Helper) {
+    * test(actions: Actions, helper: Helper) {
       console.log('测试', actions, helper);
     }
   },
