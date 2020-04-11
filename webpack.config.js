@@ -3,16 +3,14 @@ const resolve = dir => path.resolve(__dirname, dir);
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const ProgressBarWebpackPlugin = require('progress-bar-webpack-plugin');
-const WebpackBuildNotifier = require('webpack-build-notifier');
+const env = process.argv[2].substr(2);
 module.exports = {
+  mode: env,
   entry: {
     app: './src/index.js'
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].bundle.[hash:4].js',
     path: path.resolve(__dirname, 'dist'),
   },
   devtool: 'inline-source-map',
@@ -22,25 +20,31 @@ module.exports = {
     hot: true,
     host: '0.0.0.0'
   },
-  mode: 'development',
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'webpack+react+bable+antd',
-      minify: { // 压缩HTML文件
-        removeComments: true, // 移除HTML中的注释
-        collapseWhitespace: true, // 删除空白符与换行符
-        minifyCSS: true// 压缩内联css
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true,
+        minifyCSS: true
       },
-      template: path.resolve(__dirname, 'src/index.html')
+      scriptLoading: 'defer',
+      template: path.resolve(__dirname, 'src/index.html'),
+      favicon: path.resolve(__dirname, 'src/images/favicon-20191118043959587.ico'),
+      hash: true,
+      cache: true,
+      showErrors: true,
+      xhtml: true,
     }),
     new MiniCssExtractPlugin({
-      filename: 'dist/css/[name].css'
-    }),
-    new ProgressBarWebpackPlugin(),
+      filename: '[name].[hash:4].css'
+    })
   ],
+
   resolve: {
-    extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
       '@src': resolve('src')
     }
@@ -61,7 +65,7 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader
+            loader: env === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
           },
           {
             loader: 'css-loader',
@@ -102,14 +106,6 @@ module.exports = {
           loader: 'file-loader'
         }
       }
-    ]
-  },
-  optimization: {
-    splitChunks: {
-    },
-    minimizer: [
-      new TerserPlugin({}),
-      new OptimizeCssAssetsPlugin({})
     ]
   }
 };

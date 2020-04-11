@@ -9,7 +9,6 @@ let debug = false;
 if (env[0] === 'production') {
   api = 'http://192.168.2.183:8080/api';
   debug = true;
-
 }
 const context = `
 //自动生成通过script脚本创建

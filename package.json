@@ -7,9 +7,8 @@
   "scripts": {
     "develop": "node inject.js develop",
     "production": "node inject.js production",
-    "build": "webpack",
-    "buildProduction": "webpack --mode=production",
-    "buildDevelopment": "webpack --mode=development",
+    "buildProduction": "webpack --production",
+    "buildDevelopment": "webpack --development",
     "watch": "webpack --watch",
     "start": "webpack-dev-server --open",
     "nodes": "node watch.js",
