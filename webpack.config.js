@@ -1,5 +1,6 @@
 const path = require('path');
 const resolve = dir => path.resolve(__dirname, dir);
+
 const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -10,23 +11,42 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 const env = process.argv[2].substr(2);
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: {
     app: './src/index.js',
   },
   output: {
-    filename: '[name].bundle.[hash:8].js',
+    filename: 'js/[name].[hash:8].js',
     path: path.resolve(__dirname, 'dist'),
   },
 
-  devtool: 'inline-source-map',
+  devtool: 'eval',
   devServer: {
-    contentBase: [path.join(__dirname, 'dist'), path.join(__dirname, 'src/images')],
     host: '0.0.0.0',
     port: 5000,
     hot: true,
     open: false,
     progress: true,
+  },
+  optimization: {
+    minimize: true,
+    removeEmptyChunks: false,
+    runtimeChunk: true,
+    splitChunks: {
+      chunks: 'initial',
+      minSize: 20000,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      name: true,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        },
+      }
+    }
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -47,7 +67,7 @@ module.exports = {
       xhtml: true,
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].[hash:4].css'
+      filename: 'css/[name].[hash:8].css'
     }),
     new OptimizeCss(),
     new Uglifyjs({
@@ -65,7 +85,7 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    extensions: ['.ts', '.tsx','.js', '.jsx', '.json'],
     alias: {
       '@src': resolve('src')
     }
