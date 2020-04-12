@@ -4,5 +4,9 @@
   "main": "index.js",
   "repository": "https://github.com/liuwu4/webpack-demo",
   "author": "yj <liuwu4@yeah.net>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
 }
