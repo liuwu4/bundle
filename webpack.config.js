@@ -1,24 +1,32 @@
 const path = require('path');
 const resolve = dir => path.resolve(__dirname, dir);
+const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCss = require('optimize-css-assets-webpack-plugin');
+const Uglifyjs = require('uglifyjs-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 const env = process.argv[2].substr(2);
 module.exports = {
-  mode: env,
+  mode: 'production',
   entry: {
-    app: './src/index.js'
+    app: './src/index.js',
   },
   output: {
-    filename: '[name].bundle.[hash:4].js',
+    filename: '[name].bundle.[hash:8].js',
     path: path.resolve(__dirname, 'dist'),
   },
+
   devtool: 'inline-source-map',
   devServer: {
     contentBase: [path.join(__dirname, 'dist'), path.join(__dirname, 'src/images')],
-    port: 12345,
+    host: '0.0.0.0',
+    port: 5000,
     hot: true,
-    host: '0.0.0.0'
+    open: false,
+    progress: true,
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -40,6 +48,19 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[hash:4].css'
+    }),
+    new OptimizeCss(),
+    new Uglifyjs({
+      uglifyOptions: {
+        compress: true,
+      },
+      cache: true,
+      parallel: true,
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled',
+      generateStatsFile: true,
+      statsOptions: { source: false }
     })
   ],
 
@@ -107,5 +128,5 @@ module.exports = {
         }
       }
     ]
-  }
+  },
 };

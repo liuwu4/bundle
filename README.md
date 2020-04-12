@@ -98,7 +98,7 @@
 ```
 
 ### ```mini-css-extract-plugin```
-> 1. 提取 ```css```
+> 1. 提取 ```css```只能在production中使用, css 热加载会失效
 ### 安装(```install```)
 > yarn add mini-css-extract-plugin -d || npm install --save-dev mini-css-extract-plugin
 ### 使用[文档地址](https://github.com/webpack-contrib/mini-css-extract-plugin 'github')
@@ -121,7 +121,7 @@
     cosnt OptimizeCss = require('optimize-css-assets-webpack-plugin');
     const options = {};
     new OptimizeCss(options);
-    // 使用此插件会是webpack压缩js功能失效 需要重新配置uglify-js[webpace]内置插件无需再次安装]功能
+    // 使用此插件会是webpack压缩js功能失效 需要重新配置uglifyjs-webpack-plugi功能
 ```
 
 
