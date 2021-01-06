@@ -23,4 +23,36 @@ module.exports = {
       xhtml: true,
     }),
   ],
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+    alias: {
+      "@src": resolve("./src"),
+    },
+  },
+  module: {
+    rules: [
+      {
+        test: /(c|le)ss$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "style-loader",
+          },
+          { loader: "css-loader" },
+          {
+            loader: "less-loader",
+          },
+        ],
+      },
+      {
+        test: /\.(ts|js)x?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "babel-loader",
+          },
+        ],
+      },
+    ],
+  },
 };
