@@ -25,9 +25,9 @@ module.exports = {
   ],
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
-    alias: {
-      "@src": resolve("./src"),
-    },
+    // alias: {
+    //   "@src": resolve("src"),
+    // },
   },
   module: {
     rules: [
@@ -39,6 +39,9 @@ module.exports = {
             loader: "style-loader",
           },
           { loader: "css-loader" },
+          {
+            loader: "postcss-loader",
+          },
           {
             loader: "less-loader",
           },
