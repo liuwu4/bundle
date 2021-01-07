@@ -3,7 +3,7 @@ import './styles/testChunk.css'
 const Entry = () => {
   return (
     <div>
-      12341
+      1234112341jkfasdfdsa
     </div>
   )
 }

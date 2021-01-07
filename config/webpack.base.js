@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -12,20 +13,31 @@ module.exports = {
     filename: "js/[name].[hash:8].js",
     path: path.resolve("dist"),
   },
+  // optimization: {
+  //   minimizer: [],
+  // },
   plugins: [
     new CleanWebpackPlugin(),
+    new OptimizeCss(),
     new MiniCssExtractPlugin({
       filename: "css/[name][hash:8].css",
       chunkFilename: "css/[name][hash:8]:css",
     }),
-    new OptimizeCss({
-      assetNameRegExp: /\.(le|c)ss$/g,
+    new webpack.DllReferencePlugin({
+      manifest: require("../dll/react.manifest.json"),
+    }),
+    new webpack.DllReferencePlugin({
+      manifest: require("../dll/reactDom.manifest.json"),
     }),
     new HtmlWebpackPlugin({
       title: "webpack+react+bable+antd",
       hash: true,
       cache: true,
-      templateContent: '<div id="root"></div>',
+      templateContent: `
+      <div id="root"></div>
+      <script src="./dll/react.dll.js"></script>
+      <script src="./dll/reactDom.dll.js"></script>
+      `,
       meta: {
         viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
       },

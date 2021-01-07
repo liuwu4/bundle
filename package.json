@@ -8,10 +8,12 @@
   "scripts": {
     "develop": "node inject.js develop",
     "production": "node inject.js production",
-    "build:pro": "webpack --production",
-    "build:dev": "webpack --development",
+    "build:pro": "yarn build:dll && webpack --production",
+    "build:dev": "yarn build:dll && webpack --development",
+    "build:dll": "webpack --config ./config/webpack.dll.config.js",
+    "start:dev": "yarn build:dll && yarn develop && webpack-dev-server",
+    "start:pro": "yarn build:dll && yarn production && webpack-dev-server",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server",
     "eslint": "eslint src/*.js",
     "analyzer": "webpack-bundle-analyzer --port 8123 dist/stats.json"
   },
