@@ -1,11 +1,16 @@
 const path = require("path");
 const DllPlugin = require("webpack/lib/DllPlugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const Uglifyjs = require("uglifyjs-webpack-plugin");
+
 module.exports = {
   mode: "development",
   entry: {
     react: ["react"],
     reactDom: ["react-dom"],
+  },
+  optimization: {
+    minimizer: [new Uglifyjs({ cache: true })],
   },
   output: {
     filename: "[name].dll.js",
