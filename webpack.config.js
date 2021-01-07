@@ -5,13 +5,24 @@ const ENV = {
   development: dev,
   production: pro,
 };
-let env = process.argv[2];
-if (env) {
-  env = env.substr(2);
+
+let mode = process.argv[2];
+if (mode) {
+  mode = mode.substr(2);
 }
+
 const config = {
-  mode: env || "development",
+  mode: mode || "development",
   ...base,
-  ...ENV[env],
 };
-module.exports = config;
+
+module.exports = () => {
+  console.log(config.mode);
+  const keys = Object.keys(ENV[config.mode]);
+  (keys || []).forEach((item) => {
+    Object.assign(config, {
+      [item]: { ...config[item], ...ENV[config.mode][item] },
+    });
+  });
+  return config;
+};
