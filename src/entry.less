@@ -1,0 +1,25 @@
+@namespace: webpack;
+@any: ~'.@{namespace}'; // 原样输出, 只能在申明变量中使用
+#colors() {
+  // 增加()后 样式不输出在样式中
+  color: #f24;
+
+  .font {
+    font-size: 43px;
+  }
+  background-color: antiquewhite;
+}
+
+@{any} {
+  background-color: #f24;
+  &-name {
+    &ls {
+      background-color: maroon;
+      font-size: 24px;
+    }
+    @{any}-after {
+      color: aquamarine;
+      &:extend(.webpack);
+    }
+  }
+}

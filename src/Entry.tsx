@@ -1,11 +1,16 @@
-import { Button } from 'antd';
 import React from 'react';
-import './styles/testChunk.css'
+import './entry.less';
 const Entry = () => {
   return (
-    <div>
-      1234112341jkfasdfdsa
-      {/* <Button>dksk</Button> */}
+    <div className="webpack">
+      <div className="webpack-name">
+        &-
+        <div className="webpack-namels">ls</div>
+        <div className="webpack-after">after</div>
+      </div>
+      <div className="webpack-colors">
+        colors
+      </div>
     </div>
   )
 }
