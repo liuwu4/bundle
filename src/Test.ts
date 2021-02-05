@@ -1,3 +1,3 @@
-export function say() {
-  console.log("12341");
+export function say(_name: string) {
+  console.log('12341');
 }
