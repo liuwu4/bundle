@@ -31,7 +31,7 @@ module.exports = {
     'key-spacing': [ERROR, { beforeColon: false, afterColon: true }], // 对象冒号前后是否能有空格
     semi: ERROR, // 强制分号结尾
     quotes: [ERROR, 'single'], //引号类型 single 单
-    'space-unary-ops': [ERROR, { words: false, nonwords: true }], //一元运算符的前/后要不要加空格
+    'space-unary-ops': [ERROR, { words: true, nonwords: false }], //一元运算符的前/后要不要加空格
     'space-in-parens': [ERROR, 'never'], //小括号里面要不要有空格
     'no-empty': [ERROR, { allowEmptyCatch: true }], // 禁止空语句块,但是catch允许为空
     'no-unreachable': ERROR,
